@@ -22,7 +22,7 @@ Start of Flashcard  app
 
 Week 4
 
-<img src="https://github.com/Tedla2001/QuestionMe/blob/master/QuestionMe.gif" width=200><br>
+<img src="https://github.com/Tedla2001/QuestionMe/blob/master/QuestionMe2.gif" width=200><br>
 
 ## Required
 - [X] User can click on a ‘+’ button that takes the user to new ‘Add Card Screen’
