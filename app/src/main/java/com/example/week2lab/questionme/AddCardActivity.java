@@ -19,6 +19,7 @@ public class AddCardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+
             }
         });
 
@@ -32,6 +33,7 @@ public class AddCardActivity extends AppCompatActivity {
                 data.putExtra("string2", answer);
                 setResult(RESULT_OK, data);
                 finish();
+
 
             }
         });

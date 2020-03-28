@@ -1,10 +1,14 @@
 package com.example.week2lab.questionme;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import java.util.List;
@@ -27,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         if (allFlashcards != null && allFlashcards.size() > 0) {
             ((TextView) findViewById(R.id.flashcard_question)).setText(allFlashcards.get(0).getQuestion());
             ((TextView) findViewById(R.id.flashcard_answer)).setText(allFlashcards.get(0).getAnswer());
+
         }
 
         final TextView tv_answer = findViewById(R.id.flashcard_answer);
@@ -37,6 +42,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
             tv_question.setVisibility(View.INVISIBLE);
             tv_answer.setVisibility(View.VISIBLE);
+                // get the center for the clipping circle
+                int cx = tv_answer.getWidth() / 2;
+                int cy = tv_answer.getHeight() / 2;
+
+// get the final radius for the clipping circle
+                float finalRadius = (float) Math.hypot(cx, cy);
+
+// create the animator for this view (the start radius is zero)
+                Animator anim = ViewAnimationUtils.createCircularReveal(tv_answer, cx, cy, 0f, finalRadius);
+
+// hide the question and show the answer to prepare for playing the animation!
+                tv_question.setVisibility(View.INVISIBLE);
+                tv_answer.setVisibility(View.VISIBLE);
+
+                anim.setDuration(3000);
+                anim.start();
             }
         });
         tv_answer.setOnClickListener(new View.OnClickListener() {
@@ -51,12 +72,38 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,AddCardActivity.class);
                 MainActivity.this.startActivityForResult(intent,100);
+                overridePendingTransition(R.anim.in_from_right, R.anim.in_from_left);
             }
         });
+
 
         findViewById(R.id.arrow).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final Animation leftOutAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.in_from_left);
+                final Animation rightInAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.in_from_right);
+                findViewById(R.id.flashcard_question).startAnimation(leftOutAnim);
+                leftOutAnim.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                        // this method is called when the animation first starts
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+
+                        // this method is called when the animation is finished playing
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                        // we don't need to worry about this method
+                    }
+
+                });
+
+
                 // advance our pointer index so we can show the next card
                 currentCardDisplayedIndex++;
 
@@ -69,7 +116,9 @@ public class MainActivity extends AppCompatActivity {
                 ((TextView) findViewById(R.id.flashcard_question)).setText(allFlashcards.get(currentCardDisplayedIndex).getQuestion());
                 ((TextView) findViewById(R.id.flashcard_answer)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
             }
+
         });
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
