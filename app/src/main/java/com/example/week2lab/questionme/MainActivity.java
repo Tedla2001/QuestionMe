@@ -65,6 +65,23 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
             tv_answer.setVisibility(View.INVISIBLE);
             tv_question.setVisibility(View.VISIBLE);
+
+                // get the center for the clipping circle
+                int cx = tv_question.getWidth() / 2;
+                int cy = tv_question.getHeight() / 2;
+
+// get the final radius for the clipping circle
+                float finalRadius = (float) Math.hypot(cx, cy);
+
+// create the animator for this view (the start radius is zero)
+                Animator anim = ViewAnimationUtils.createCircularReveal(tv_question, cx, cy, 0f, finalRadius);
+
+// hide the question and show the answer to prepare for playing the animation!
+                tv_answer.setVisibility(View.INVISIBLE);
+                tv_question.setVisibility(View.VISIBLE);
+
+                anim.setDuration(3000);
+                anim.start();
             }
         });
         findViewById((R.id.plus)).setOnClickListener(new View.OnClickListener() {

@@ -6,32 +6,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:background="#ffde03"
     android:id="@+id/relativeLayout">
 
     <TextView
         android:id="@+id/flashcard_question"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginTop="11dp"
         android:layout_marginBottom="311dp"
+        android:background="@drawable/card_background"
         android:gravity="center"
         android:text="@string/Question1"
-        android:textSize="40sp"
-        />
+        android:textSize="35sp" />
 
     <TextView
         android:id="@+id/flashcard_answer"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginTop="11dp"
         android:layout_marginBottom="311dp"
+        android:background="@drawable/card_background"
         android:gravity="center"
         android:text="@string/barack_obama"
-        android:textSize="40sp" />
+        android:textSize="35sp" />
 
     <ImageView
         android:id="@+id/plus"
