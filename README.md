@@ -40,7 +40,7 @@ Week 4
 
 Week 5
 
-<img src="https://github.com/Tedla2001/QuestionMe/blob/master/Saving%20Data.gif" width=200><br>
+
 
 ## Required
 - [X] User can create a card and still see their created card when the app is relaunched.
@@ -66,4 +66,4 @@ Lab 4
 - [ ] User sees a 'card flip' animation when the card is tapped
 - [ ] User sees a celebration animation with confetti when they answer a question correctly
 
-<img src="https://github.com/Tedla2001/QuestionMe/blob/master/Animation.gif" width="200">
+<img src="https://github.com/Tedla2001/QuestionMe/blob/master/Final_Anim.gif" width="200">
